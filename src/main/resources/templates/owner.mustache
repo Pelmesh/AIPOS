@@ -1,0 +1,26 @@
+<html>
+
+<body>
+    <div>
+        <form action="/logout" method="post">
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+            <input type="submit" value="Sign Out"/>
+        </form>
+    </div>
+    <div>
+        <form method="post">
+            <input type="text" name="ownerName" placeholder="имя" />
+            <input type="text" name="year" placeholder="год рождения">
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+            <button type="submit">Добавить</button>
+        </form>
+    </div>
+    {{#owners}}
+        <div>
+            <b>{{id}}</b>
+            <span>{{ownerName}}</span>
+            <i>{{year}}</i>
+        </div>
+    {{/owners}}
+</body>
+</html>
