@@ -1,7 +1,7 @@
 package com.example.sweater.controller;
 
 import com.example.sweater.domain.Car;
-import com.example.sweater.domain.Check;
+import com.example.sweater.domain.Check_Car;
 import com.example.sweater.domain.Owner;
 import com.example.sweater.domain.User;
 import com.example.sweater.repos.CarRepo;
@@ -29,22 +29,22 @@ public class CheckController {
     public String main(Map<String, Object> model) {
         Iterable<Car> cars = carRepo.findAll();
         Iterable<Owner> owners = ownerRepo.findAll();
+        Iterable<Check_Car> checks = checkRepo.findAll();
         model.put("cars", cars);
         model.put("owners", owners);
+        model.put("checks", checks);
         return "check";
     }
 
     @PostMapping("/check")
     public String add(
             @AuthenticationPrincipal User user,
-            @RequestParam String ownerName,String result,
-            @RequestParam String engineNumber,Map<String, Object> model
+            @RequestParam String ownerName,String vin,
+            @RequestParam String result,Map<String, Object> model
     ) {
-        Check check = new Check(ownerName, engineNumber,result, user);
-        System.out.println("=========================================================");
+        Check_Car check = new Check_Car(ownerName, vin,result, user);
         checkRepo.save(check);
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        Iterable<Check> checks = checkRepo.findAll();
+        Iterable<Check_Car> checks = checkRepo.findAll();
         model.put("checks", checks);
         return "check";
     }

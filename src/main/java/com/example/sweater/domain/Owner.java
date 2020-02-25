@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Owner {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
+    private Integer id_owner;
 
     private String ownerName;
     private String year;
@@ -36,12 +36,12 @@ public class Owner {
         this.author = author;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getId_owner() {
+        return id_owner;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId_owner(Integer id_owner) {
+        this.id_owner = id_owner;
     }
 
     public String getOwnerName() {

@@ -1,12 +1,15 @@
 package com.example.sweater.controller;
 
+import com.example.sweater.domain.Car;
 import com.example.sweater.domain.Owner;
 import com.example.sweater.domain.User;
 import com.example.sweater.repos.OwnerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,6 +24,14 @@ public class OwnerController {
         Iterable<Owner> owners = ownerRepo.findAll();
         model.put("owners", owners);
         return "owner";
+    }
+
+    @GetMapping("/owner/{owner}")
+    public String carEdit(@PathVariable Owner owner, Model model) {
+        System.out.println(" ======================================");
+        model.addAttribute("owners",owner);
+        System.out.println(owner+" "+model);
+        return "ownerEdit";
     }
 
     @PostMapping("/owner")

@@ -6,10 +6,29 @@ import javax.persistence.*;
 public class Car {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    private Integer idCar;
 
     private String modelCar;
-    private String engineNumber;
+
+    public String getVin() {
+        return vin;
+    }
+
+    public void setVin(String vin) {
+        this.vin = vin;
+    }
+
+    private Integer authorId;
+
+    public Integer getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Integer authorId) {
+        this.authorId = authorId;
+    }
+
+    private String vin;
     private String number;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -19,11 +38,19 @@ public class Car {
     public Car() {
     }
 
-    public Car(String modelCar, String engineNumber, String number, User user) {
+    public Car(String modelCar, String vin, String number, User user) {
         this.author = user;
         this.modelCar = modelCar;
-        this.engineNumber = engineNumber;
+        this.vin = vin;
         this.number = number;
+    }
+
+    public Car(Integer idCar, String vin, String number, String modelCar,User user) {
+        this.idCar = idCar;
+        this.modelCar = modelCar;
+        this.vin = vin;
+        this.number = number;
+        this.author = user;
     }
 
     public String getAuthorName() {
@@ -38,13 +65,12 @@ public class Car {
         this.author = author;
     }
 
-
-    public Integer getId() {
-        return id;
+    public Integer getIdCar() {
+        return idCar;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdCar(Integer idCar) {
+        this.idCar = idCar;
     }
 
     public String getModelCar() {
@@ -55,19 +81,22 @@ public class Car {
         this.modelCar = modelCar;
     }
 
-    public String getEngineNumber() {
-        return engineNumber;
-    }
-
-    public void setEngineNumber(String engineNumber) {
-        this.engineNumber = engineNumber;
-    }
-
     public String getNumber() {
         return number;
     }
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "idCar=" + idCar +
+                ", modelCar='" + modelCar + '\'' +
+                ", vin='" + vin + '\'' +
+                ", number='" + number + '\'' +
+                ", author=" + author +
+                '}';
     }
 }

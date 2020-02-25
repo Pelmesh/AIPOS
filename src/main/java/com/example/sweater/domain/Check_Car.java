@@ -3,36 +3,36 @@ package com.example.sweater.domain;
 import javax.persistence.*;
 
 @Entity
-public class Check {
+public class Check_Car {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
+    private Integer id_check;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User author;
 
-    private String engineNumber;
+    private String vin;
     private String ownerName;
     private String result;
 
-    public Check(){
+    public Check_Car(){
 
     }
 
-    public Check(String ownerName, String engineNumber,String result, User user) {
+    public Check_Car(String ownerName, String engineNumber, String result, User user) {
         this.author = user;
-        this.engineNumber = engineNumber;
+        this.vin = engineNumber;
         this.ownerName = ownerName;
         this.result = result;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getId_check() {
+        return id_check;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId_check(Integer id_check) {
+        this.id_check = id_check;
     }
 
     public User getAuthor() {
@@ -43,12 +43,12 @@ public class Check {
         this.author = author;
     }
 
-    public String getEngineNumber() {
-        return engineNumber;
+    public String getVin() {
+        return vin;
     }
 
-    public void setEngineNumber(String engineNumber) {
-        this.engineNumber = engineNumber;
+    public void setVin(String vin) {
+        this.vin = vin;
     }
 
     public String getOwnerName() {

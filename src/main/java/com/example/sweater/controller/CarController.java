@@ -6,9 +6,8 @@ import com.example.sweater.repos.CarRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -18,23 +17,24 @@ public class CarController {
     private CarRepo carRepo;
 
     @GetMapping("/car")
-    public String main(Map<String, Object> model) {
-        Iterable<Car> cars = carRepo.findAll();
-        model.put("cars", cars);
+    public String CarList(Model model) {
+        model.addAttribute("cars",carRepo.findAll());
         return "car";
     }
 
-    @PostMapping("/car")
+   @PostMapping("/car")
     public String add(
             @AuthenticationPrincipal User user,
             @RequestParam String modelCar,
-            @RequestParam String engineNumber,
+            @RequestParam String vin,
             @RequestParam String number,Map<String, Object> model
     ) {
-        Car car = new Car(modelCar, engineNumber,number, user);
+        Car car = new Car(modelCar, vin,number, user);
         carRepo.save(car);
         Iterable<Car> cars = carRepo.findAll();
         model.put("cars", cars);
         return "car";
     }
+
+
 }
