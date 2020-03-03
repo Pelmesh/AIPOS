@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface OwnerRepo extends CrudRepository<Owner, Long> {
-    List<Owner> findByOwnerName(String ownerName);
+    List<Owner> findOwnerByIdOwner(Integer idOwner);
 }

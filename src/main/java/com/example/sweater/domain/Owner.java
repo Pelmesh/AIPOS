@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Owner {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id_owner;
+    private Integer idOwner;
 
     private String ownerName;
     private String year;
@@ -24,6 +24,13 @@ public class Owner {
         this.author = user;
     }
 
+    public Owner(String ownerName, String year, Integer idOwner, User user) {
+        this.ownerName = ownerName;
+        this.year = year;
+        this.author = user;
+        this.idOwner = idOwner;
+    }
+
     public String getAuthorName() {
         return author != null ? author.getUsername() : "<none>";
     }
@@ -36,12 +43,12 @@ public class Owner {
         this.author = author;
     }
 
-    public Integer getId_owner() {
-        return id_owner;
+    public Integer getIdOwner() {
+        return idOwner;
     }
 
-    public void setId_owner(Integer id_owner) {
-        this.id_owner = id_owner;
+    public void setIdOwner(Integer idOwner) {
+        this.idOwner = idOwner;
     }
 
     public String getOwnerName() {
@@ -60,4 +67,16 @@ public class Owner {
         this.year = year;
     }
 
+
+
+
+    @Override
+    public String toString() {
+        return "Owner{" +
+                "idOwner=" + idOwner +
+                ", ownerName='" + ownerName + '\'' +
+                ", year='" + year + '\'' +
+                ", author=" + author +
+                '}';
+    }
 }

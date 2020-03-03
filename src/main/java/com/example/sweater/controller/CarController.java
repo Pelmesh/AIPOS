@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
-
 @Controller
 public class CarController {
     @Autowired
@@ -27,12 +25,11 @@ public class CarController {
             @AuthenticationPrincipal User user,
             @RequestParam String modelCar,
             @RequestParam String vin,
-            @RequestParam String number,Map<String, Object> model
+            @RequestParam String number,Model model
     ) {
         Car car = new Car(modelCar, vin,number, user);
         carRepo.save(car);
-        Iterable<Car> cars = carRepo.findAll();
-        model.put("cars", cars);
+        model.addAttribute("cars",carRepo.findAll());
         return "car";
     }
 

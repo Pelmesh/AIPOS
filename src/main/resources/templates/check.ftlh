@@ -2,9 +2,9 @@
 <@c.page>
     <form action="/check" method="post">
         <div>
-            <select name="engineNumber">
+            <select name="vin">
                 <#list cars as car>
-                <option >${car.engineNumber}</option>
+                <option >${car.vin}</option>
                 </#list>
             </select>
             <select name="ownerName">

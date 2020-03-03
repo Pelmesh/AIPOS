@@ -16,10 +16,10 @@
     </div>
     <#list owners as owner>
         <div>
-            <b>${owner.id_owner}</b>
+            <b>${owner.idOwner}</b>
             <span>${owner.ownerName}</span>
             <i>${owner.year}</i>
-            <a href="/owner/${owner.id_owner}">edit</a>
+            <a href="/ownerList/${owner.idOwner}">edit</a>
         </div>
     </#list>
 </@c.page>

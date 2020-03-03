@@ -12,8 +12,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="#">Cars</a>
-                    <a class="nav-item nav-link active" href="#">Owners</a>
+                    <a class="nav-item nav-link active" href="/car">Cars</a>
+                    <a class="nav-item nav-link active" href="/owner">Owners</a>
                 </div>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -44,7 +44,3 @@
         }
     </style>
 </#macro>
-
-<!--
-
-!>

@@ -26,14 +26,6 @@ public class OwnerController {
         return "owner";
     }
 
-    @GetMapping("/owner/{owner}")
-    public String carEdit(@PathVariable Owner owner, Model model) {
-        System.out.println(" ======================================");
-        model.addAttribute("owners",owner);
-        System.out.println(owner+" "+model);
-        return "ownerEdit";
-    }
-
     @PostMapping("/owner")
     public String add(
             @AuthenticationPrincipal User user,
