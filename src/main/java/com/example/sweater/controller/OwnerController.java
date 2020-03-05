@@ -30,12 +30,13 @@ public class OwnerController {
     public String add(
             @AuthenticationPrincipal User user,
             @RequestParam String ownerName,
-            @RequestParam String year,Map<String, Object> model
+            @RequestParam String year,Model model
     ) {
-        Owner owner = new Owner(ownerName, year, user);
-        ownerRepo.save(owner);
-        Iterable<Owner> owners = ownerRepo.findAll();
-        model.put("owners", owners);
+        if(ownerName.length()>0 && year.length()>0) {
+            Owner owner = new Owner(ownerName, year, user);
+            ownerRepo.save(owner);
+        }
+        model.addAttribute("owners", ownerRepo.findAll());
         return "owner";
     }
 }

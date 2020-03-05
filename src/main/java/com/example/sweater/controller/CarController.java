@@ -27,8 +27,10 @@ public class CarController {
             @RequestParam String vin,
             @RequestParam String number,Model model
     ) {
-        Car car = new Car(modelCar, vin,number, user);
-        carRepo.save(car);
+        if(modelCar.length()>0 && vin.length()>0 && number.length()>0) {
+            Car car = new Car(modelCar, vin, number, user);
+            carRepo.save(car);
+        }
         model.addAttribute("cars",carRepo.findAll());
         return "car";
     }
