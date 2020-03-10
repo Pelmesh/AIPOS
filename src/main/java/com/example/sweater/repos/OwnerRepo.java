@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface OwnerRepo extends CrudRepository<Owner, Long> {
     List<Owner> findOwnerByIdOwner(Integer idOwner);
+
+    void deleteOwnerByIdOwner(Integer idOwner);
 }

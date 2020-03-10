@@ -15,17 +15,16 @@ public class CarEditController {
     @Autowired
     CarRepo carRepo;
 
-
     @GetMapping
     public String CarEditController(Model model) {
         model.addAttribute("cars",carRepo.findAll());
-        return "carList";
+        return "carFTHL/carList";
     }
 
     @GetMapping("{idCar}")
     public String carEdit(@PathVariable Integer idCar, Model model) {
         model.addAttribute("cars", carRepo.findCarByIdCar(idCar));
-        return "carEdit";
+        return "carFTHL/carEdit";
     }
 
     @PostMapping("{idCar}")

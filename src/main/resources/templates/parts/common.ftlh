@@ -16,8 +16,8 @@
                     <a class="nav-item nav-link active" href="/owner">Owners</a>
                 </div>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+            <form action="/logout" method="post" class="form-inline my-2 my-lg-0">
+                <input type="hidden" name="_csrf" value="${_csrf.token}" />
                 <input class="butInput my-2 my-lg-0 mr-sm-0 my-sm-0" type="submit" value="Sign Out"/>
             </form>
         </div>

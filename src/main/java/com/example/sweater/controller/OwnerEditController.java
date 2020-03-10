@@ -18,13 +18,13 @@ public class OwnerEditController {
     @GetMapping
     public String OwnerEditController(Model model) {
         model.addAttribute("owners",ownerRepo.findAll());
-        return "/ownerList";
+        return "ownerFTHL/ownerList";
     }
 
     @GetMapping("{idOwner}")
     public String carEdit(@PathVariable Integer idOwner, Model model) {
         model.addAttribute("owners", ownerRepo.findOwnerByIdOwner(idOwner));
-        return "ownerEdit";
+        return "ownerFTHL/ownerEdit";
     }
 
     @PostMapping("{idOwner}")

@@ -9,25 +9,6 @@ public class Car {
     private Integer idCar;
 
     private String modelCar;
-
-    public String getVin() {
-        return vin;
-    }
-
-    public void setVin(String vin) {
-        this.vin = vin;
-    }
-
-    private Integer authorId;
-
-    public Integer getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(Integer authorId) {
-        this.authorId = authorId;
-    }
-
     private String vin;
     private String number;
 
@@ -53,18 +34,6 @@ public class Car {
         this.author = user;
     }
 
-    public String getAuthorName() {
-        return author != null ? author.getUsername() : "<none>";
-    }
-
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
     public Integer getIdCar() {
         return idCar;
     }
@@ -81,12 +50,28 @@ public class Car {
         this.modelCar = modelCar;
     }
 
+    public String getVin() {
+        return vin;
+    }
+
+    public void setVin(String vin) {
+        this.vin = vin;
+    }
+
     public String getNumber() {
         return number;
     }
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     @Override

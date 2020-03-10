@@ -1,8 +1,6 @@
 package com.example.sweater.controller;
 
-import com.example.sweater.domain.Car;
 import com.example.sweater.domain.Check_Car;
-import com.example.sweater.domain.Owner;
 import com.example.sweater.domain.User;
 import com.example.sweater.repos.CarRepo;
 import com.example.sweater.repos.CheckRepo;
@@ -15,8 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Map;
-
 @Controller
 public class CheckController {
     @Autowired
@@ -27,13 +23,10 @@ public class CheckController {
     private CheckRepo checkRepo;
 
     @GetMapping("/check")
-    public String main(Map<String, Object> model) {
-        Iterable<Car> cars = carRepo.findAll();
-        Iterable<Owner> owners = ownerRepo.findAll();
-        Iterable<Check_Car> checks = checkRepo.findAll();
-        model.put("cars", cars);
-        model.put("owners", owners);
-        model.put("checks", checks);
+    public String main(Model model) {
+        model.addAttribute("cars", carRepo.findAll());
+        model.addAttribute("owners", ownerRepo.findAll());
+        model.addAttribute("checks", checkRepo.findAll());
         return "check";
     }
 

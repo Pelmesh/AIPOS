@@ -1,4 +1,4 @@
-<#import "parts/common.ftlh" as c>
+<#import "../parts/common.ftlh" as c>
 <@c.page>
     <div>
         <form method="post" class="form-inline">
@@ -17,7 +17,7 @@
                 <th>ID</th>
                 <th>Имя</th>
                 <th>Год рождения</th>
-                <th>исправить</th>
+                <th>Изменить</th>
             </tr>
         </thead>
         <tbody>
@@ -26,7 +26,7 @@
                 <td>${owner.idOwner}</td>
                 <td>${owner.ownerName}</td>
                 <td>${owner.year}</td>
-                <td><a href="/ownerList/${owner.idOwner}">edit</a></td>
+                <td><a href="/ownerList/${owner.idOwner}" class="btn btn-primary">Изменить</a></td>
             </tr>
         </#list>
         </tbody>

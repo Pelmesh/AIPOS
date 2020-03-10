@@ -17,7 +17,7 @@ public class CarController {
     @GetMapping("/car")
     public String CarList(Model model) {
         model.addAttribute("cars",carRepo.findAll());
-        return "car";
+        return "carFTHL/car";
     }
 
    @PostMapping("/car")
@@ -32,8 +32,6 @@ public class CarController {
             carRepo.save(car);
         }
         model.addAttribute("cars",carRepo.findAll());
-        return "car";
+        return "carFTHL/car";
     }
-
-
 }

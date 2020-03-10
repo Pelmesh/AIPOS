@@ -8,16 +8,16 @@ public class Check_Car {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id_check;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User author;
+
 
     private String vin;
     private String ownerName;
     private String result;
 
     public Check_Car(){
-
     }
 
     public Check_Car(String ownerName, String engineNumber, String result, User user) {

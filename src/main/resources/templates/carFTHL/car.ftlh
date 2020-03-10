@@ -1,4 +1,4 @@
-<#import "parts/common.ftlh" as c>
+<#import "../parts/common.ftlh" as c>
 <@c.page>
     <div>
         <form method="post" class="form-inline">
@@ -18,6 +18,7 @@
                 <th>Модель</th>
                 <th>VIN</th>
                 <th>Номер</th>
+                <th>Изменить</th>
             </tr>
         </thead>
         <tbody>
@@ -27,9 +28,10 @@
                     <td>${car.modelCar}</td>
                     <td>${car.vin}</td>
                     <td>${car.number}</td>
-                    <td><a href="/carList/${car.idCar}">edit</a></td>
+                    <td><a href="/carList/${car.idCar}" class="btn btn-primary">Изменить</a></td>
                 </tr>
             </#list>
         </tbody>
     </table>
+
 </@c.page>

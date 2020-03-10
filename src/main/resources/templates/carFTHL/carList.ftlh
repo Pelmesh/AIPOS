@@ -1,4 +1,4 @@
-<#import "parts/common.ftlh" as c>
+<#import "../parts/common.ftlh" as c>
 <@c.page>
 <table>
     тупо лист
@@ -8,7 +8,7 @@
             <td>${car.modelCar}</td>
             <td>${car.vin}</td>
             <td>${car.number}</td>
-            <td><a href="/carList/${car.idCar}">edit</a></td>
+            <td><a href="/carList/${car.idCar}">Изменить</a></td>
         </tr>
     </#list>
 </table>
