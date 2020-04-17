@@ -8,7 +8,7 @@ public class Check_Car {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id_check;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User author;
 

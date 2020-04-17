@@ -34,6 +34,12 @@ public class Car {
         this.author = user;
     }
 
+    public Car(String modelCar, String vin, String number) {
+        this.modelCar = modelCar;
+        this.vin = vin;
+        this.number = number;
+    }
+
     public Integer getIdCar() {
         return idCar;
     }
@@ -66,9 +72,7 @@ public class Car {
         this.number = number;
     }
 
-    public User getAuthor() {
-        return author;
-    }
+    public User getAuthor() { return author; }
 
     public void setAuthor(User author) {
         this.author = author;

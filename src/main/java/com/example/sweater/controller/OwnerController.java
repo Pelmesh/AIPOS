@@ -5,22 +5,23 @@ import com.example.sweater.domain.User;
 import com.example.sweater.repos.OwnerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@CrossOrigin(origins = "http://localhost:8080")
+@RestController
 public class OwnerController {
     @Autowired
     private OwnerRepo ownerRepo;
 
     @GetMapping("/owner")
-    public String main(Model model) {
-        model.addAttribute("owners", ownerRepo.findAll());
-        return "ownerFTHL/owner";
+    public List<Owner> read() {
+        List<Owner> owner = ownerRepo.findAll();
+        return owner;
     }
+
 
     @PostMapping("/owner")
     public String add(
