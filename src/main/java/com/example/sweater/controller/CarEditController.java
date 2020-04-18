@@ -18,23 +18,23 @@ public class CarEditController {
     @Autowired
     CarRepo carRepo;
 
-    @Transactional
+    /*@Transactional
     @DeleteMapping("{idCar}")
     public void deleteCar(
             @PathVariable Integer idCar
     ){
         carRepo.deleteCarByIdCar(idCar);
     //    return "redirect:carFTHL/car";
-    }
+    }*/
 
 
-    @GetMapping("{idCar}")
+    /*@GetMapping("{idCar}")
     public List<Car> carEdit(@PathVariable Integer idCar, Model model) {
         List<Car> car = carRepo.findCarByIdCar(idCar);
         return car;
-    }
+    }*/
 
-    @PostMapping("{idCar}")
+    /*@PostMapping("{idCar}")
     public String userSave(
             @RequestParam String vin,
             @RequestParam String number,
@@ -44,5 +44,5 @@ public class CarEditController {
         Car car = new Car(idCar,vin,number,modelCar,user);
         carRepo.save(car);
         return "redirect:/car";
-    }
+    }*/
 }

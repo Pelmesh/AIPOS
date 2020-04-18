@@ -5,7 +5,7 @@ import com.example.sweater.domain.User;
 import com.example.sweater.repos.CarRepo;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -15,31 +15,56 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
+@RequestMapping("/car")
 public class CarController {
     @Autowired
     private CarRepo carRepo;
+    private Gson g = new Gson();
 
-
-    @GetMapping("/car")
-    public List<Car> read() {
-        List<Car> car = carRepo.findAll();
-        return car;
+    @GetMapping
+    public List<Car> findAllCar() {
+        return carRepo.findAll();
     }
 
-
-    @PostMapping("/car")
-    public List<Car> add(
+    @PostMapping
+    public List<Car> addCar(
             @AuthenticationPrincipal User user,
             @RequestBody String jsonStr
     ) {
-        Gson g = new Gson();
         JsonCar jsonCar = g.fromJson(jsonStr, JsonCar.class);
         Car car = new Car(jsonCar.modelCar,jsonCar.vin,jsonCar.number,user);
         carRepo.save(car);
         return carRepo.findAll();
     }
 
+    @GetMapping("/{idCar}")
+    public List<Car> findCarForEdit(@PathVariable Integer idCar, Model model) {
+        return carRepo.findCarByIdCar(idCar);
+    }
+
+    @PostMapping("/{idCar}")
+    public List<Car> carSave(
+            @AuthenticationPrincipal User user,
+            @RequestBody String jsonStr,
+            @PathVariable Integer idCar
+    ) {
+        JsonCar jsonCar = g.fromJson(jsonStr, JsonCar.class);
+        Car car = new Car(idCar,jsonCar.modelCar,jsonCar.number,jsonCar.vin,user);
+        carRepo.save(car);
+        return carRepo.findCarByIdCar(idCar);
+    }
+
+    @Modifying
+    @Transactional
+    @DeleteMapping("/{idCar}")
+    public void deleteCar(
+            @PathVariable Integer idCar
+    ){
+        carRepo.deleteCarByIdCar(idCar);
+    }
+
     class JsonCar {
+        public String id;
         public String vin;
         public String number;
         public String modelCar;

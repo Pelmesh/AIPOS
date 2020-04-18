@@ -26,7 +26,7 @@ public class Car {
         this.number = number;
     }
 
-    public Car(Integer idCar, String vin, String number, String modelCar,User user) {
+    public Car(Integer idCar, String modelCar, String number, String vin,User user) {
         this.idCar = idCar;
         this.modelCar = modelCar;
         this.vin = vin;
