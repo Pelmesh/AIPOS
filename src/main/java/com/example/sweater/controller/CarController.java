@@ -10,8 +10,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
+import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
@@ -42,7 +42,7 @@ public class CarController {
         return carRepo.findCarByIdCar(idCar);
     }
 
-    @PostMapping("/{idCar}")
+    @PutMapping("/{idCar}")
     public List<Car> carSave(
             @AuthenticationPrincipal User user,
             @RequestBody String jsonStr,

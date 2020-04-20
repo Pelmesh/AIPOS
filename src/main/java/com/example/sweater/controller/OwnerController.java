@@ -3,37 +3,65 @@ package com.example.sweater.controller;
 import com.example.sweater.domain.Owner;
 import com.example.sweater.domain.User;
 import com.example.sweater.repos.OwnerRepo;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.ui.Model;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
+@RequestMapping("/owner")
 public class OwnerController {
     @Autowired
     private OwnerRepo ownerRepo;
+    private Gson g = new Gson();
 
-    @GetMapping("/owner")
-    public List<Owner> read() {
+    @GetMapping
+    public List<Owner> findAllOwner() {
         List<Owner> owner = ownerRepo.findAll();
         return owner;
     }
 
-
-    @PostMapping("/owner")
-    public String add(
+    @PostMapping
+    public void addOwnder(
             @AuthenticationPrincipal User user,
-            @RequestParam String ownerName,
-            @RequestParam String year,Model model
+            @RequestBody String jsonStr
     ) {
-        if(ownerName.length()>0 && year.length()>0) {
-            Owner owner = new Owner(ownerName, year, user);
-            ownerRepo.save(owner);
-        }
-        model.addAttribute("owners", ownerRepo.findAll());
-        return "ownerFTHL/owner";
+        JsonOwner jsonOwner = g.fromJson(jsonStr, JsonOwner.class);
+        Owner owner = new Owner(jsonOwner.ownerName, jsonOwner.year, user);
+        ownerRepo.save(owner);
+    }
+
+    @GetMapping("{idOwner}")
+    public List<Owner> carEdit(@PathVariable Integer idOwner) {
+        return ownerRepo.findOwnerByIdOwner(idOwner);
+    }
+
+    @PutMapping("{idOwner}")
+    public void ownerSave(
+            @AuthenticationPrincipal User user,
+            @RequestBody String jsonStr,
+            @PathVariable Integer idOwner
+    ) {
+        JsonOwner jsonOwner = g.fromJson(jsonStr, JsonOwner.class);
+        Owner owner = new Owner(jsonOwner.ownerName, jsonOwner.year, idOwner, user);
+        ownerRepo.save(owner);
+    }
+
+    @Transactional
+    @DeleteMapping("{idOwner}")
+    public void deleteOwner(
+            @PathVariable Integer idOwner
+    ) {
+        ownerRepo.deleteOwnerByIdOwner(idOwner);
+    }
+
+    class JsonOwner {
+        public String id;
+        public String ownerName;
+        public String year;
     }
 }
