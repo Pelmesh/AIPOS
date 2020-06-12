@@ -67,16 +67,4 @@ public class Owner {
         this.year = year;
     }
 
-
-
-
-    @Override
-    public String toString() {
-        return "Owner{" +
-                "idOwner=" + idOwner +
-                ", ownerName='" + ownerName + '\'' +
-                ", year='" + year + '\'' +
-                ", author=" + author +
-                '}';
-    }
 }

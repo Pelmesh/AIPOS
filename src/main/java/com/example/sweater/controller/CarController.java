@@ -11,11 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("/car")
+@RequestMapping("car")
 public class CarController {
     @Autowired
     private CarRepo carRepo;
@@ -57,11 +61,21 @@ public class CarController {
     @Modifying
     @Transactional
     @DeleteMapping("/{idCar}")
-    public void deleteCar(
+    public List<Car> deleteCar(
             @PathVariable Integer idCar
     ){
         carRepo.deleteCarByIdCar(idCar);
+        return carRepo.findAll();
     }
+
+    @GetMapping("model")
+    public List<String> searchModel(
+    ){
+        return carRepo.searchModel();
+    }
+
+
+
 
     class JsonCar {
         public String id;

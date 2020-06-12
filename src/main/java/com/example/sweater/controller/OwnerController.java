@@ -26,13 +26,14 @@ public class OwnerController {
     }
 
     @PostMapping
-    public void addOwnder(
+    public List<Owner> addOwnder(
             @AuthenticationPrincipal User user,
             @RequestBody String jsonStr
     ) {
         JsonOwner jsonOwner = g.fromJson(jsonStr, JsonOwner.class);
         Owner owner = new Owner(jsonOwner.ownerName, jsonOwner.year, user);
         ownerRepo.save(owner);
+        return  ownerRepo.findAll();
     }
 
     @GetMapping("{idOwner}")
@@ -41,7 +42,7 @@ public class OwnerController {
     }
 
     @PutMapping("{idOwner}")
-    public void ownerSave(
+    public List<Owner> ownerSave(
             @AuthenticationPrincipal User user,
             @RequestBody String jsonStr,
             @PathVariable Integer idOwner
@@ -49,14 +50,16 @@ public class OwnerController {
         JsonOwner jsonOwner = g.fromJson(jsonStr, JsonOwner.class);
         Owner owner = new Owner(jsonOwner.ownerName, jsonOwner.year, idOwner, user);
         ownerRepo.save(owner);
+        return ownerRepo.findOwnerByIdOwner(idOwner);
     }
 
     @Transactional
     @DeleteMapping("{idOwner}")
-    public void deleteOwner(
+    public List<Owner> deleteOwner(
             @PathVariable Integer idOwner
     ) {
         ownerRepo.deleteOwnerByIdOwner(idOwner);
+        return ownerRepo.findAll();
     }
 
     class JsonOwner {

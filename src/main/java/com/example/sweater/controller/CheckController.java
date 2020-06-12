@@ -25,13 +25,14 @@ public class CheckController {
     }
 
     @PostMapping
-    public void add(
+    public List<Check_Car> add(
             @AuthenticationPrincipal User user,
             @RequestBody String jsonStr
     ) {
         JsonCheck jsonCheck = g.fromJson(jsonStr, JsonCheck.class);
         Check_Car check = new Check_Car(jsonCheck.ownerName, jsonCheck.vin, jsonCheck.result, user);
         checkRepo.save(check);
+        return checkRepo.findAll();
     }
 
     class JsonCheck {
